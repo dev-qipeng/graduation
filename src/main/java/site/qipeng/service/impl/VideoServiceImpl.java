@@ -1,16 +1,17 @@
 package site.qipeng.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.qipeng.util.StringUtils;
 import site.qipeng.dao.VideoMapper;
 import site.qipeng.entity.Video;
 import site.qipeng.entity.VideoDTO;
 import site.qipeng.entity.VideoExample;
 import site.qipeng.service.VideoService;
+import site.qipeng.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Map;
 @Service
 public class VideoServiceImpl extends Video implements VideoService {
 
-    private static Logger logger = Logger.getLogger(VideoServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(VideoServiceImpl.class);
 
     @Autowired
     private VideoMapper videoMapper;

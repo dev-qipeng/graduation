@@ -1,7 +1,8 @@
 package site.qipeng.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.qipeng.dao.BannerMapper;
@@ -16,7 +17,7 @@ import java.util.Map;
 @Service
 public class BannerServiceImpl implements BannerService {
 
-    Logger logger = Logger.getLogger(BannerServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(BannerServiceImpl.class);
 
     @Autowired
     private BannerMapper bannerMapper;

@@ -1,14 +1,15 @@
 package site.qipeng.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.qipeng.dao.CategoryMapper;
-import site.qipeng.util.StringUtils;
 import site.qipeng.entity.Category;
 import site.qipeng.entity.CategoryExample;
 import site.qipeng.service.CategoryService;
+import site.qipeng.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Map;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private static Logger logger = Logger.getLogger(CategoryServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
     @Autowired
     private CategoryMapper categoryMapper;

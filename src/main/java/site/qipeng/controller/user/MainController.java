@@ -1,7 +1,8 @@
 package site.qipeng.controller.user;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import site.qipeng.entity.User;
 import site.qipeng.service.UserService;
-
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
@@ -21,7 +21,7 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    Logger logger = Logger.getLogger(MainController.class);
+    private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

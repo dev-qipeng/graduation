@@ -4,7 +4,8 @@ import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.*;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +17,7 @@ import java.util.UUID;
 
 @Component
 public class OSSPlugin {
-    Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private String endpoint = "oss-cn-beijing.aliyuncs.com";
     private String bucketName = "qipeng";

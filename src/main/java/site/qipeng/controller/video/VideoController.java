@@ -1,7 +1,8 @@
 package site.qipeng.controller.video;
 
 import com.github.pagehelper.PageInfo;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ import java.util.Map;
 @RequestMapping(value = "video")
 public class VideoController {
 
-    Logger logger = Logger.getLogger(VideoController.class);
+    private static Logger logger = LoggerFactory.getLogger(VideoController.class);
 
     @Autowired
     private VideoService videoService;
