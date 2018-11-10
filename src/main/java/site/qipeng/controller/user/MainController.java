@@ -51,6 +51,11 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping(value = "login-success", method = RequestMethod.POST)
+    public String loginSuccess(HttpServletRequest request){
+        return "index";
+    }
+
     @RequestMapping(value = "/testInsert", method = RequestMethod.GET)
     public void testInsert() {
 

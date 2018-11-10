@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="statics/css/bootstrap.min.css">
-    <script src="statics/js/jquery-3.3.1.min.js"></script>
-    <script src="statics/js/bootstrap.min.js"></script>
+    <script src="statics/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="statics/js/bootstrap.min.js" type="text/javascript"></script>
 
     <title>程序管理后台</title>
     <style>
