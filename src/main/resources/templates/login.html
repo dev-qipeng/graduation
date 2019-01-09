@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript"
+            src="http://localhost:37799/WebReport/ReportServer?op=emb&resource=finereport.js"></script>
+    <script type="text/javascript">
+        function loginFR() {
+            var username = FR.cjkEncode(document.getElementById("username").value);
+            var password = FR.cjkEncode(document.getElementById("password").value);
+            var f = document.getElementById("loginForm");
+            jQuery.ajax({
+                url: "http://localhost:37799/ReportServer?op=fs_load&cmd=sso",
+                //单点登录的报表服务器
+                dataType: "jsonp",
+                //跨域采用jsonp方式
+                data: {"fr_username": username, "fr_password": password},
+                jsonp: "callback", timeout: 5000,
+                //超时时间（单位：毫秒）
+                success: function (data) {
+                    if (data.status === "success") {
+                        alert("success"); //登录成功 // document.getElementById("login").submit();
+                        // 登录成功提交表单，跳转到index.jsp这个登录成功页面
+                        window.location = data.url;//登录成功，直接跳转到平台系统页
+                    } else if (data.status === "fail") {
+                        alert("用户名密码错误！！！");
+                        //登录失败（用户名或密码错误）
+                    }
+                }, error: function () {
+                    alert("超时或服务器其他错误！！！");
+                    // 登录失败（超时或服务器其他错误）
+                }
+            });
+        }
+    </script>
+<body>
+    <form id="loginForm" name="loginForm" method="post" action="index.html">
+        <table>
+            <tbody>
+            <tr class="prop">
+                <td class="name"><label> Username</label></td>
+                <td class="value"><input id="username" type="text" name="username" value=""/></td>
+            </tr>
+            <tr class="prop">
+                <td class="name"><label> Password</label></td>
+                <td class="value"><input id="password" type="password" name="password" value=""/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>

@@ -39,7 +39,7 @@
     </div>
     <div class="login-content">
         <h3 class="align-center">LOGIN</h3>
-        <form class="login-form" role="form" action="${springMacroRequestContext.contextPath}/login.do" method="post">
+        <form class="login-form" role="form" action="${springMacroRequestContext.contextPath}/login" method="post">
                 <div class="form-group">
                     <label class="sr-only control-label" for="username">用户名：</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名"/>

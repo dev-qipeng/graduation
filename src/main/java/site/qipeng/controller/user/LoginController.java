@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,9 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class MainController {
+public class LoginController {
 
-    private static Logger logger = LoggerFactory.getLogger(MainController.class);
+    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -36,10 +37,16 @@ public class MainController {
      * 启动执行
      * @return
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
+    @RequestMapping(value = "/")
+    public String login() {
         return "login";
 
+    }
+
+    @RequestMapping(value = "login-error")
+    public String loginError(HttpServletRequest request, Model model){
+        model.addAttribute("error","login error");
+        return "index";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)

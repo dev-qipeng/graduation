@@ -79,4 +79,16 @@ public class UserServiceImpl implements UserService {
         logger.debug("delete one user...");
         return userMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public User getUserByUsername(String username) {
+        UserExample example = new UserExample();
+        UserExample.Criteria cri = example.createCriteria();
+        cri.andNicknameEqualTo(username);
+        List<User> users = userMapper.selectByExample(example);
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users.get(0);
+    }
 }

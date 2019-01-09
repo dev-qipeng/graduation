@@ -17,4 +17,10 @@ public interface UserService {
     int update(UserDTO userDTO);
 
     int delete(Integer id);
+
+    /**
+     * 用户spring security 认证
+     * @return
+     */
+    User getUserByUsername(String username);
 }
