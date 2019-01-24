@@ -7,18 +7,23 @@
                 &nbsp;&nbsp;<button class="btn btn-primary navbar-btn add-video">添加视频</button>
             </div>
             <form class="navbar-form navbar-left" role="search">
-                <input type="text" class="form-control">
-                <button type="submit" class="btn btn-default">
+                <input type="text" class="form-control" id="search" name="search" value="${keyword !''}">
+                <button type="button" class="btn btn-default" id="search-button">
                     搜索
                 </button>
             </form>
             <!--向右对齐-->
             <form class="navbar-form navbar-right" role="search">
-                <label for="sort">类别:&nbsp;</label>
-                <select id="sort" class="form-control">
-                    <option>科幻</option>
-                    <option>恐怖</option>
-                    <option>动漫</option>
+                <label for="category">类别:&nbsp;</label>
+                <select id="category" class="form-control">
+                    <option value="">全部</option>
+                    <#list categoryList as category>
+                        <#if (categoryId ! -1) == category.id>
+                            <option value="${category.id !''}" selected="selected" >${category.name !''}</option>
+                        <#else>
+                            <option value="${category.id !''}" >${category.name !''}</option>
+                        </#if>
+                    </#list>
                 </select>
             </form>
         </div>
@@ -136,10 +141,36 @@
             });
         });
 
+        // 搜索
+        $("#search-button").click(function () {
+            var keyword = $("#search").val();
+            var categoryId = $("#category  option:selected").val();
+            var url = ctx+"video/list.do?pageNum=1&keyword="+keyword+"&categoryId="+categoryId;
+            $.get(url,function(html){
+                $(".content").html(html)
+            });
+            return false;
+        });
+
+        //类别
+        $("#category").change(function () {
+            var keyword = $("#search").val();
+            var categoryId = $("#category  option:selected").val();
+            var url = ctx+"video/list.do?pageNum=1&keyword="+keyword+"&categoryId="+categoryId;
+            $.get(url,function(html){
+                $(".content").html(html)
+            });
+            return false;
+        });
+
+
+
         // 分页点击
         $(".page-link").click(function() {
             // 显示右边内容
-            var url = $(this).attr("href");
+            var keyword = $("#search").val();
+            var categoryId = $("#category  option:selected").val();
+            var url = $(this).attr("href")+"&keyword="+keyword+"&categoryId="+categoryId;
             $.get(url,function(html){
                 $(".content").html(html)
             });

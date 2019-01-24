@@ -25,14 +25,14 @@
                 <div class="form-group">
                     <label class="col-lg-2">上传封面图：</label>
                     <div class="col-lg-9">
-                        <#include "/upload/upload-img.ftl"/>
+                        <#include "../upload/upload-img.ftl"/>
                         <input type="hidden" id="poster" name="poster">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2">上传视频：</label>
                     <div class="col-lg-9">
-                        <#include "/upload/upload-video.ftl"/>
+                        <#include "../upload/upload-video.ftl"/>
                         <input type="hidden" id="url" name="url">
                     </div>
                 </div>

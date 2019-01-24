@@ -21,17 +21,17 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-
         site.qipeng.entity.User userByUsername = userService.getUserByUsername(s);
+        if (userByUsername == null) {
+            throw new UsernameNotFoundException("Username not found.");
+        }
         UserInfo userInfo = new UserInfo();
         userInfo.setUsername(userByUsername.getNickname());
         userInfo.setPassword(userByUsername.getPassword());
-        User user = new User(userInfo.getUsername(), userInfo.getPassword(), getAuth());
-        return user;
+        return new User(userInfo.getUsername(), userInfo.getPassword(), getAuth());
     }
 
     private Collection<? extends GrantedAuthority> getAuth() {
-        List<AuthorityInfo> authorityInfos = new ArrayList<>();
-        return authorityInfos;
+        return new ArrayList<AuthorityInfo>();
     }
 }

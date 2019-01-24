@@ -27,7 +27,7 @@
                     <div class="col-lg-9">
                         <input type="text" class="form-control" id="imgUrl" name="imgUrl"
                                value="${user.headImg !''}">
-                        <#include "/upload/upload.ftl"/>
+                        <#include "../upload/upload.ftl"/>
                     </div>
                 </div>
                 <div class="form-group form-select-button">

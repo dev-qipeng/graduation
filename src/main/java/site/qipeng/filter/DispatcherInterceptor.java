@@ -14,7 +14,7 @@ public class DispatcherInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info(request.getRequestURL().toString());
+//        logger.info(request.getRequestURL().toString());
         return true;
     }
 

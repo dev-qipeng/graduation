@@ -1,6 +1,7 @@
 package site.qipeng.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,22 @@ public class VideoServiceImpl extends Video implements VideoService {
         return videoMapper.selectByPrimaryKey(id);
     }
 
-    public List<Video> getVideoList(Map<String, Object> map, Integer pageNum, Integer pageSize) {
+    public PageInfo<Video> getVideoList(Map<String, Object> map, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         VideoExample example = new VideoExample();
-        return videoMapper.selectByExample(example);
+        VideoExample.Criteria cri = example.createCriteria();
+        String keyword = (String)map.get("keyword");
+        Integer categoryId = (Integer)map.get("categoryId");
+        if (keyword != null && !"".equals(keyword)) {
+            cri.andNameLike("%" +keyword +"%");
+        }
+        if (categoryId != null) {
+            cri.andCategoryIdEqualTo(categoryId);
+        }
+        example.setOrderByClause("create_time desc");
+
+        List<Video> videos = videoMapper.selectByExample(example);
+        return new PageInfo<>(videos);
     }
 
     @Transactional

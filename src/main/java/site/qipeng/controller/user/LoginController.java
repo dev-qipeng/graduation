@@ -37,31 +37,24 @@ public class LoginController {
      * 启动执行
      * @return
      */
-    @RequestMapping(value = "/")
+    @RequestMapping(value = {"/", "/index"})
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping(value = "/login")
     public String login() {
         return "login";
-
     }
 
-    @RequestMapping(value = "login-error")
-    public String loginError(HttpServletRequest request, Model model){
-        model.addAttribute("error","login error");
-        return "index";
-    }
-
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(String username, String password, HttpServletRequest request){
-        User user = userService.login(username, password);
-        if (user != null) {
-            request.getSession().setAttribute("currentUser", user);
-        }
-        return "index";
-    }
-
-    @RequestMapping(value = "login-success", method = RequestMethod.POST)
-    public String loginSuccess(HttpServletRequest request){
-        return "index";
-    }
+//    @RequestMapping(value = "login", method = RequestMethod.POST)
+//    public String login(String username, String password, HttpServletRequest request){
+//        User user = userService.login(username, password);
+//        if (user != null) {
+//            request.getSession().setAttribute("currentUser", user);
+//        }
+//        return "index";
+//    }
 
     @RequestMapping(value = "/testInsert", method = RequestMethod.GET)
     public void testInsert() {

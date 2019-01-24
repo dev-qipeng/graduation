@@ -28,7 +28,7 @@
                     <div class="col-lg-9">
                         <input type="text" class="form-control" id="poster" name="poster"
                                value="${video.poster!''}">
-                        <#include "/upload/upload-img.ftl"/>
+                        <#include "../upload/upload-img.ftl"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -36,7 +36,7 @@
                     <div class="col-lg-9">
                         <input type="text" class="form-control" id="url" name="url"
                                value="${video.url!}">
-                        <#include "/upload/upload-video.ftl"/>
+                        <#include "../upload/upload-video.ftl"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,12 +49,12 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/crypto1/crypto/crypto.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/crypto1/hmac/hmac.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/crypto1/sha1/sha1.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/base64.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/upload-two.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/crypto1/crypto/crypto.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/crypto1/hmac/hmac.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/crypto1/sha1/sha1.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/base64.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/upload-two.js"></script>
 <script>
     $(function () {
         var ctx = '${springMacroRequestContext.contextPath}';

@@ -31,7 +31,7 @@ public class VideoController {
     @Autowired
     private CategoryService categoryService;
 
-    public static Integer pageSize = 5;
+    public final Integer pageSize = 5;
 
     @ResponseBody
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
@@ -44,11 +44,18 @@ public class VideoController {
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public String list(@RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum, Integer pageSize, Model model){
+    public String list(@RequestParam(required = false,defaultValue = "1",value = "pageNum")Integer pageNum,
+                       Integer pageSize,
+                       @RequestParam(required = false, defaultValue = "", value = "keyword")String keyword,
+                       @RequestParam(required = false, defaultValue = "", value = "categoryId")Integer categoryId,
+                       Model model){
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Video> videoList = videoService.getVideoList(map, pageNum, this.pageSize);
-        PageInfo<Video> pageInfo = new PageInfo<Video>(videoList);
+        map.put("keyword", keyword);
+        map.put("categoryId", categoryId);
+        PageInfo<Video> pageInfo = videoService.getVideoList(map, pageNum, this.pageSize);
         model.addAttribute("pageInfo",pageInfo);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("categoryId", categoryId);
         // 返回分类列表
         List<Category> categoryList = categoryService.getCategoryListJson();
         model.addAttribute("categoryList",categoryList);
