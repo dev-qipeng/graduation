@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import site.qipeng.dao.CategoryMapper;
+import site.qipeng.mapper.CategoryMapper;
 import site.qipeng.entity.Category;
 import site.qipeng.entity.CategoryExample;
 import site.qipeng.service.CategoryService;

@@ -1,8 +1,9 @@
 <!--弹出修改用户窗口-->
+<#assign ctx="${springMacroRequestContext.contextPath}">
 <div class="panel panel-default">
     <ol class="breadcrumb">
-        <li><a href="javascript:history.back(-1)"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
-        <li class="active">修改视频</li>
+        <li><a id="back" href="${ctx}/video/list.do?pageNum=1"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
+        <li class="active">修改分类</li>
     </ol>
     <div class="panel-body">
         <div class="col-lg-8 col-lg-offset-2">
@@ -53,6 +54,15 @@
         };
         $("#categoryUpdateForm").submit(function () {
             $(this).ajaxSubmit(options);
+            return false;
+        });
+
+        // 返回按钮
+        $("#back").click(function () {
+            var url = $(this).attr("href");
+            $.get(url,function(html){
+                $(".content").html(html);
+            });
             return false;
         });
     })

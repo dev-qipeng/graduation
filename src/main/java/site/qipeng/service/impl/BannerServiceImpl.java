@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import site.qipeng.dao.BannerMapper;
+import site.qipeng.mapper.BannerMapper;
 import site.qipeng.entity.Banner;
 import site.qipeng.entity.BannerDTO;
 import site.qipeng.entity.BannerExample;

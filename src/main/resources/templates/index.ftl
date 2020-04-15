@@ -39,7 +39,7 @@
     <div class="menu-item" href="${ctx}/category/list.do?pageNum=1"><img src="${ctx}/statics/images/icon_user_grey.png">分类管理</div>
     <div class="menu-title">用户管理</div>
     <div class="menu-item" href="${ctx}/user/list.do?pageNum=1"><img src="${ctx}/statics/images/icon_chara_grey.png">用户管理</div>
-    <div class="menu-item" href="#chan"><img src="${ctx}/statics/images/icon_change_grey.png">修改密码</div>
+    <div class="menu-item" href="${ctx}/user/goto-change-pwd"><img src="${ctx}/statics/images/icon_change_grey.png">修改密码</div>
     <div class="menu-title">界面管理</div>
     <div class="menu-item" href="${ctx}/banner/list.do?pageNum=1"><img src="${ctx}/statics/images/icon_rule_grey.png">banner设置</div>
 </div>
@@ -71,7 +71,7 @@
             // 显示右边内容
             var url = $(this).attr("href");
             $.get(url,function(html){
-                $(".content").html(html)
+                $(".content").html(html);
             });
         });
     });

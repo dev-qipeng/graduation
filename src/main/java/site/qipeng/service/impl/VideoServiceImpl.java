@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.qipeng.dao.VideoMapper;
+import site.qipeng.mapper.VideoMapper;
 import site.qipeng.entity.Video;
 import site.qipeng.entity.VideoDTO;
 import site.qipeng.entity.VideoExample;
@@ -48,7 +48,7 @@ public class VideoServiceImpl extends Video implements VideoService {
         example.setOrderByClause("create_time desc");
 
         List<Video> videos = videoMapper.selectByExample(example);
-        return new PageInfo<>(videos);
+        return new PageInfo(videos);
     }
 
     @Transactional

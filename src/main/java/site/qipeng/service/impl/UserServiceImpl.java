@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.qipeng.dao.UserMapper;
+import site.qipeng.mapper.UserMapper;
 import site.qipeng.entity.User;
 import site.qipeng.entity.UserDTO;
 import site.qipeng.entity.UserExample;
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
             return 0;
         }
         user.setNickname(dto.getNickname());
-        user.setPassword(dto.getPassword());
+//        user.setPassword(dto.getPassword());
         user.setHeadImg(dto.getImgUrl());
         user.setSex(dto.getSex());
         user.setCity(dto.getCity());
@@ -90,5 +90,14 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         return users.get(0);
+    }
+
+    @Override
+    public int changePwd(User user) {
+        User update = new User();
+        update.setId(user.getId());
+        update.setPassword(user.getPassword());
+        logger.debug("change password by user:{} .",user.getNickname());
+        return userMapper.updateByPrimaryKeySelective(update);
     }
 }

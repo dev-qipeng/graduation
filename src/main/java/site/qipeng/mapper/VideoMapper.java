@@ -1,4 +1,4 @@
-package site.qipeng.dao;
+package site.qipeng.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;

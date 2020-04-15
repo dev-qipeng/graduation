@@ -1,8 +1,9 @@
 <!--添加banner-->
+<#assign ctx="${springMacroRequestContext.contextPath}">
 <div class="panel panel-default">
     <ol class="breadcrumb">
-        <li><a href="javascript:history.back(-1)"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
-        <li class="active">添加Banner</li>
+        <li><a id="back" href="${ctx}/banner/list.do?pageNum=1"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
+        <li class="active">添加banner</li>
     </ol>
     <div class="panel-body">
         <div class="col-lg-8 col-lg-offset-2">
@@ -10,7 +11,7 @@
                 <div class="form-group">
                     <label class="col-lg-2">上传Banner图：</label>
                     <div class="col-lg-9">
-                        <#include "/upload/upload.ftl"/>
+                        <#include "../upload/upload.ftl"/>
                         <input type="hidden" id="imgUrl" name="imgUrl">
                     </div>
                 </div>
@@ -30,12 +31,12 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/crypto1/crypto/crypto.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/crypto1/hmac/hmac.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/crypto1/sha1/sha1.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/base64.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
-<script type="text/javascript" src="${springMacroRequestContext.contextPath}/upload/upload.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/crypto1/crypto/crypto.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/crypto1/hmac/hmac.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/crypto1/sha1/sha1.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/base64.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="${springMacroRequestContext.contextPath}/statics/upload/upload-two.js"></script>
 <script>
     $(function () {
         var ctx = '${springMacroRequestContext.contextPath}';
@@ -69,6 +70,15 @@
         };
         $("#bannerAddForm").submit(function () {
             $(this).ajaxSubmit(options);
+            return false;
+        });
+
+        // 返回按钮
+        $("#back").click(function () {
+            var url = $(this).attr("href");
+            $.get(url,function(html){
+                $(".content").html(html);
+            });
             return false;
         });
     })

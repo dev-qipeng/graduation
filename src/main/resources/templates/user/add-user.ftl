@@ -1,9 +1,8 @@
 <!--弹出添加用户窗口-->
-<!--弹出修改用户窗口-->
 <div class="panel panel-default">
     <ol class="breadcrumb">
         <li><a href="javascript:history.back(-1)"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
-        <li class="active">添加视频</li>
+        <li class="active">添加用户</li>
     </ol>
     <div class="panel-body">
         <div class="col-lg-10 col-lg-offset-1">

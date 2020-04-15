@@ -21,17 +21,17 @@ public class UploadController {
     private OSSPlugin ossPlugin;
 
     @ResponseBody
-    @RequestMapping(value="/upload")
-    public JsonResult uploadFile(MultipartFile file){
+    @RequestMapping(value = "/upload")
+    public JsonResult uploadFile(MultipartFile file) {
         String path;
         if (file != null && file.getOriginalFilename().length() > 0) {
-            if(!isImg(file.getOriginalFilename())){
+            if (!isImg(file.getOriginalFilename())) {
                 return JsonResultUtil.getErrorJson("不允许上传的文件格式，请上传gif,jpg,bmp格式文件。");
             }
             path = ossPlugin.upload(file);
-            logger.info("文件保存路径："+file.getOriginalFilename());
+            logger.info("文件保存路径：" + file.getOriginalFilename());
             return JsonResultUtil.getObjectJson(path);
-        }else{
+        } else {
             return JsonResultUtil.getErrorJson("没有文件");
         }
     }
@@ -39,10 +39,11 @@ public class UploadController {
 
     /**
      * 是否是图片
+     *
      * @param imgFileName
      * @return
      */
-    public static boolean isImg(String imgFileName){
+    public static boolean isImg(String imgFileName) {
         imgFileName = imgFileName.toLowerCase();
         String allowTYpe = "gif,jpg,png,jpeg,swf";
         if (!imgFileName.trim().equals("") && imgFileName.length() > 0) {
@@ -52,4 +53,7 @@ public class UploadController {
             return false;
         }
     }
+
+
 }
+

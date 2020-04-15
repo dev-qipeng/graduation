@@ -1,4 +1,4 @@
-package site.qipeng.configuration.security;
+package site.qipeng.config.security;
 
 import org.springframework.security.core.GrantedAuthority;
 

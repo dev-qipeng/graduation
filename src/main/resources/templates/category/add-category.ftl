@@ -1,7 +1,8 @@
 <!--添加分类-->
+<#assign ctx="${springMacroRequestContext.contextPath}">
 <div class="panel panel-default">
     <ol class="breadcrumb">
-        <li><a href="javascript:history.back(-1)"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
+        <li><a id="back" href="${ctx}/video/list.do?pageNum=1"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
         <li class="active">添加分类</li>
     </ol>
     <div class="panel-body">
@@ -52,6 +53,15 @@
         };
         $("#categoryAddForm").submit(function () {
             $(this).ajaxSubmit(options);
+            return false;
+        });
+
+        // 返回按钮
+        $("#back").click(function () {
+            var url = $(this).attr("href");
+            $.get(url,function(html){
+                $(".content").html(html);
+            });
             return false;
         });
     })

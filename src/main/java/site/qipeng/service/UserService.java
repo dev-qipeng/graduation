@@ -23,4 +23,6 @@ public interface UserService {
      * @return
      */
     User getUserByUsername(String username);
+
+    int changePwd(User user);
 }

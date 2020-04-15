@@ -1,4 +1,4 @@
-package site.qipeng.configuration.security;
+package site.qipeng.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,10 +25,7 @@ public class CustomUserDetailService implements UserDetailsService {
         if (userByUsername == null) {
             throw new UsernameNotFoundException("Username not found.");
         }
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUsername(userByUsername.getNickname());
-        userInfo.setPassword(userByUsername.getPassword());
-        return new User(userInfo.getUsername(), userInfo.getPassword(), getAuth());
+        return new User(userByUsername.getNickname(), userByUsername.getPassword(), getAuth());
     }
 
     private Collection<? extends GrantedAuthority> getAuth() {
