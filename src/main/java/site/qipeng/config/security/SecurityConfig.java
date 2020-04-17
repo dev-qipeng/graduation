@@ -24,7 +24,6 @@ import java.util.Collection;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
     private CustomUserDetailService customUserDetailService;
@@ -37,21 +36,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/statics/**", "/templates/**").permitAll().anyRequest().authenticated()
-                .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/index")
-                    .failureUrl("/login")
-                    .permitAll()
-                .and()
-                .logout()
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/login")
-                    .permitAll()
-                .and()
-                .csrf().disable();
+            .authorizeRequests()
+            .antMatchers("/statics/**", "/templates/**", "/login").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/index")
+                .failureUrl("/login")
+                .permitAll()
+            .and()
+            .logout()
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/login")
+                .permitAll()
+            .and()
+            .csrf().disable();
     }
 
     @Override
@@ -91,4 +91,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    public static void main(String[] args) {
+        String encode = new BCryptPasswordEncoder().encode("123");
+        System.out.println(encode);
+    }
 }

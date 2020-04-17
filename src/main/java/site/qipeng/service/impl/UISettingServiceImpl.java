@@ -8,6 +8,4 @@ import site.qipeng.service.UISettingService;
 @Service
 public class UISettingServiceImpl implements UISettingService {
 
-    @Autowired
-    private BannerMapper bannerMapper;
 }

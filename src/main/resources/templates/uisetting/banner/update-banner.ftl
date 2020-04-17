@@ -2,7 +2,7 @@
 <#assign ctx="${springMacroRequestContext.contextPath}">
 <div class="panel panel-default">
     <ol class="breadcrumb">
-        <li><a id="back" href="${ctx}/banner/list.do?pageNum=1"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
+        <li><a id="back" href="${ctx}/banner/list?current=1"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
         <li class="active">修改banner</li>
     </ol>
     <div class="panel-body">
@@ -49,7 +49,7 @@
         }
 
         var options = {
-            url: ctx + '/banner/update.do',
+            url: ctx + '/banner/update',
             type: 'POST',
             dataType: 'json',
             resetForm: true,

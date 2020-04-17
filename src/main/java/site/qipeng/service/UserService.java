@@ -1,28 +1,14 @@
 package site.qipeng.service;
 
-
+import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
 import site.qipeng.entity.User;
-import site.qipeng.entity.UserDTO;
 
-import java.util.List;
-import java.util.Map;
+public interface UserService extends IService<User> {
+    @Transactional
+    boolean update(User user);
 
-public interface UserService {
-    User login(String username, String password);
+    boolean changePwd(User user);
 
-    List<User> getUserList(Map<String,Object> map, Integer pageNum, Integer pageSize);
-
-    User getById(Integer id);
-
-    int update(UserDTO userDTO);
-
-    int delete(Integer id);
-
-    /**
-     * 用户spring security 认证
-     * @return
-     */
-    User getUserByUsername(String username);
-
-    int changePwd(User user);
+    User getByUsername(String s);
 }

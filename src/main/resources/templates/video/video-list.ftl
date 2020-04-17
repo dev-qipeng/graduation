@@ -47,7 +47,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list pageInfo.list as video>
+        <#list pageInfo.records as video>
             <tr>
                 <td width="10%">${video.id}</td>
                 <td width="15%" style="word-break:break-all; word-wrap:break-word; white-space:inherit">${video.name !''}</td>
@@ -79,20 +79,20 @@
 <!--页码块-->
 <footer class="footer">
     <ul class="pagination">
-        <#if pageInfo.hasPreviousPage?then('true', 'false') == 'true'>
-            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/video/list.do?pageNum=${pageInfo.pageNum-1}">Previous</a></li>
+        <#if pageInfo.hasPrevious()?then('true', 'false') == 'true'>
+            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/video/list?current=${pageInfo.current-1}">Previous</a></li>
         <#else>
             <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
         </#if>
-        <#list pageInfo.navigatepageNums as page_num>
-            <#if (page_num == pageInfo.pageNum)>
+        <#list pageInfo.getPages() as page_num>
+            <#if (page_num == pageInfo.current)>
                 <li class="page-item active"><a class="page-link" href="#">${page_num}</a></li>
             <#else>
-                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/video/list.do?pageNum=${page_num}">${page_num}</a></li>
+                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/video/list?current=${page_num}">${page_num}</a></li>
             </#if>
         </#list>
-        <#if pageInfo.hasNextPage?then('true', 'false') == 'true'>
-            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/video/list.do?pageNum=${pageInfo.pageNum+1}">Next</a></li>
+        <#if pageInfo.hasNext()?then('true', 'false') == 'true'>
+            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/video/list?current=${pageInfo.current+1}">Next</a></li>
         <#else>
             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
         </#if>
@@ -102,14 +102,14 @@
     $(function(){
         var ctx = '${springMacroRequestContext.contextPath}';
         $(".add-video").click(function(){
-            var url = ctx+'/video/goto-add-video.do';
+            var url = ctx+'/video/goto-add-video';
             $.get(url,function(html){
                 $(".content").html(html)
             });
         });
         $(".update-video").click(function(){
             var id = this.id;
-            var url = ctx+'/video/'+id+'/goto-update-video.do';
+            var url = ctx+'/video/'+id+'/goto-update-video';
             $.get(url,function(html){
                 $(".content").html(html)
             });
@@ -118,7 +118,7 @@
             var id = this.id;
             bootbox.confirm("确定要删除吗？", function(result){
                 if(result === true){
-                    var url = ctx+'/video/'+id+'/delete.do';
+                    var url = ctx+'/video/'+id+'/delete';
                     $.ajax({
                         type: 'DELETE',
                         url: url,
@@ -145,7 +145,7 @@
         $("#search-button").click(function () {
             var keyword = $("#search").val();
             var categoryId = $("#category  option:selected").val();
-            var url = ctx+"video/list.do?pageNum=1&keyword="+keyword+"&categoryId="+categoryId;
+            var url = ctx+"video/list?current=1&keyword="+keyword+"&categoryId="+categoryId;
             $.get(url,function(html){
                 $(".content").html(html)
             });
@@ -156,7 +156,7 @@
         $("#category").change(function () {
             var keyword = $("#search").val();
             var categoryId = $("#category  option:selected").val();
-            var url = ctx+"video/list.do?pageNum=1&keyword="+keyword+"&categoryId="+categoryId;
+            var url = ctx+"video/list?current=1&keyword="+keyword+"&categoryId="+categoryId;
             $.get(url,function(html){
                 $(".content").html(html)
             });

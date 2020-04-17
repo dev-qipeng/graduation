@@ -1,4 +1,7 @@
 package site.qipeng.service;
 
-public interface CommentService {
+import com.baomidou.mybatisplus.extension.service.IService;
+import site.qipeng.entity.Comment;
+
+public interface CommentService extends IService<Comment> {
 }

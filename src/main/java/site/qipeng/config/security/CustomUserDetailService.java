@@ -21,7 +21,7 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-        site.qipeng.entity.User userByUsername = userService.getUserByUsername(s);
+        site.qipeng.entity.User userByUsername = userService.getByUsername(s);
         if (userByUsername == null) {
             throw new UsernameNotFoundException("Username not found.");
         }

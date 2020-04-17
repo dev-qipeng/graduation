@@ -1,74 +1,18 @@
 package site.qipeng.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import site.qipeng.mapper.CategoryMapper;
 import site.qipeng.entity.Category;
-import site.qipeng.entity.CategoryExample;
+import site.qipeng.mapper.CategoryMapper;
 import site.qipeng.service.CategoryService;
-import site.qipeng.util.StringUtils;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
+@Slf4j
 @Service
-public class CategoryServiceImpl implements CategoryService {
-
-    private static Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 
     @Autowired
     private CategoryMapper categoryMapper;
 
-    @Override
-    public Category getCategoryById(Integer id) {
-        if(!StringUtils.isEmpty(id.toString())){
-            return categoryMapper.selectByPrimaryKey(id);
-        }
-        return null;
-    }
-
-    @Override
-    public List<Category> getCategoryList(Map<String, Object> map, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        CategoryExample example = new CategoryExample();
-        return categoryMapper.selectByExample(example);
-    }
-
-    @Override
-    public List<Category> getCategoryListJson() {
-        CategoryExample example = new CategoryExample();
-        return categoryMapper.selectByExample(example);
-    }
-
-    @Override
-    public int insertCategory(String name) {
-        Category record = new Category();
-        record.setName(name);
-        record.setCreateTime(new Date());
-        logger.debug("insert one category...");
-        return categoryMapper.insert(record);
-    }
-
-    @Override
-    public int updateCategory(Integer id, String name) {
-        Category category = getCategoryById(id);
-        category.setName(name);
-        category.setUpdateTime(new Date());
-        logger.debug("update one category...");
-        return categoryMapper.updateByPrimaryKey(category);
-    }
-
-    @Override
-    public int deleteCategory(Integer id) {
-        if(!StringUtils.isEmpty(id.toString())){
-            logger.debug("delete one category...");
-            // TODO 删除分类后，视频怎么办
-            return categoryMapper.deleteByPrimaryKey(id);
-        }
-        return 0;
-    }
 }

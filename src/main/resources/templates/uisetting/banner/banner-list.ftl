@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list pageInfo.list as banner>
+        <#list pageInfo.records as banner>
             <tr>
                 <td width="10%">${banner.id}</td>
                 <td width="20%">
@@ -48,20 +48,20 @@
 <!--页码块-->
 <footer class="footer">
     <ul class="pagination">
-        <#if pageInfo.hasPreviousPage?then('true', 'false') == 'true'>
-            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/banner/list.do?pageNum=${pageInfo.pageNum-1}">Previous</a></li>
+        <#if pageInfo.hasPrevious()?then('true', 'false') == 'true'>
+            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/banner/list?current=${pageInfo.current-1}">Previous</a></li>
         <#else>
             <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
         </#if>
         <#list pageInfo.navigatepageNums as page_num>
-            <#if (page_num == pageInfo.pageNum)>
+            <#if (page_num == pageInfo.current)>
                 <li class="page-item active"><a class="page-link" href="#">${page_num}</a></li>
             <#else>
-                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/banner/list.do?pageNum=${page_num}">${page_num}</a></li>
+                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/banner/list?current=${page_num}">${page_num}</a></li>
             </#if>
         </#list>
-        <#if pageInfo.hasNextPage?then('true', 'false') == 'true'>
-            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/banner/list.do?pageNum=${pageInfo.pageNum+1}">Next</a></li>
+        <#if pageInfo.hasNext()?then('true', 'false') == 'true'>
+            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/banner/list?current=${pageInfo.current+1}">Next</a></li>
         <#else>
             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
         </#if>
@@ -71,13 +71,13 @@
     $(function(){
         var ctx = '${springMacroRequestContext.contextPath}';
         $(".add-banner").click(function(){
-            var url = ctx+'/banner/goto-add-banner.do';
+            var url = ctx+'/banner/goto-add-banner';
             $.get(url,function(html){
                 $(".content").html(html)
             });
         });
         $(".refresh-banner").click(function(){
-            var url = ctx+'/banner/list.do?pageNum=1';
+            var url = ctx+'/banner/list?current=1';
             $.get(url,function(html){
                 $(".content").html(html)
             });
@@ -85,7 +85,7 @@
         $(".update-banner").click(function(){
             var id = this.id;
             console.log(id);
-            var url = ctx+'/banner/'+id+'/goto-update-banner.do';
+            var url = ctx+'/banner/'+id+'/goto-update-banner';
             $.get(url,function(html){
                 $(".content").html(html)
             });
@@ -94,7 +94,7 @@
             var id = this.id;
             bootbox.confirm("确定要删除吗？", function(result){
                 if(result === true){
-                    var url = ctx+'/banner/'+id+'/delete.do';
+                    var url = ctx+'/banner/'+id+'/delete';
                     $.ajax({
                         type: 'DELETE',
                         url: url,

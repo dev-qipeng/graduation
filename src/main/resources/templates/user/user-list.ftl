@@ -27,7 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list pageInfo.list as user>
+        <#list pageInfo.records as user>
             <tr>
                 <td width="10%">${user.id}</td>
                 <td width="15%">${user.nickname !''}</td>
@@ -51,20 +51,20 @@
 <!--页码块-->
 <footer class="footer">
     <ul class="pagination">
-        <#if pageInfo.hasPreviousPage?then('true', 'false') == 'true'>
-            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/user/list.do?pageNum=${pageInfo.pageNum-1}">Previous</a></li>
+        <#if pageInfo.hasPrevious()?then('true', 'false') == 'true'>
+            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/user/list?current=${pageInfo.current-1}">Previous</a></li>
         <#else>
             <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
         </#if>
         <#list pageInfo.navigatepageNums as page_num>
-            <#if (page_num == pageInfo.pageNum)>
+            <#if (page_num == pageInfo.current)>
                 <li class="page-item active"><a class="page-link" href="#">${page_num}</a></li>
             <#else>
-                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/user/list.do?pageNum=${page_num}">${page_num}</a></li>
+                <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/user/list?current=${page_num}">${page_num}</a></li>
             </#if>
         </#list>
-        <#if pageInfo.hasNextPage?then('true', 'false') == 'true'>
-            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/user/list.do?pageNum=${pageInfo.pageNum+1}">Next</a></li>
+        <#if pageInfo.hasNext()?then('true', 'false') == 'true'>
+            <li class="page-item"><a class="page-link" href="${springMacroRequestContext.contextPath}/user/list?current=${pageInfo.current+1}">Next</a></li>
         <#else>
             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
         </#if>
@@ -75,7 +75,7 @@
         var ctx = '${springMacroRequestContext.contextPath}';
         $(".update-user").click(function(){
             var id = this.id;
-            var url = ctx+'/user/'+id+'/goto-update-user.do';
+            var url = ctx+'/user/'+id+'/goto-update-user';
             $.get(url,function(html){
                 $(".content").html(html)
             });
@@ -84,7 +84,7 @@
             var id = this.id;
             bootbox.confirm("确定要删除吗？", function(result){
                 if(result === true){
-                    var url = ctx+'/user/'+id+'/delete.do';
+                    var url = ctx+'/user/'+id+'/delete';
                     $.ajax({
                         type: 'DELETE',
                         url: url,

@@ -1,103 +1,59 @@
 package site.qipeng.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.qipeng.mapper.UserMapper;
 import site.qipeng.entity.User;
-import site.qipeng.entity.UserDTO;
-import site.qipeng.entity.UserExample;
+import site.qipeng.mapper.UserMapper;
 import site.qipeng.service.UserService;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
+@Slf4j
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-    private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-
-    @Autowired
-    private UserMapper userMapper;
 
     public User login(String username, String password) {
-        UserExample example = new UserExample();
-        UserExample.Criteria cri = example.createCriteria();
-        cri.andNicknameEqualTo(username);
-        cri.andPasswordEqualTo(password);
-        List<User> users = userMapper.selectByExample(example);
-        if (users != null && users.size() > 0){
-            return users.get(0);
+        User user = getOne(Wrappers.<User>lambdaQuery().eq(User::getNickname, username).eq(User::getPassword, password));
+        if (user != null) {
+            return user;
         }
         return null;
     }
 
-    @Override
-    public List<User> getUserList(Map<String, Object> map, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        UserExample example = new UserExample();
-        example.setOrderByClause("create_time desc");
-        return userMapper.selectByExample(example);
-    }
-
-    @Override
-    public User getById(Integer id) {
-        if(id == null){
-            return null;
-        }
-        return userMapper.selectByPrimaryKey(id);
-    }
 
     @Transactional
     @Override
-    public int update(UserDTO dto) {
-        User user = getById(dto.getId());
-        if (user == null){
-            return 0;
-        }
-        user.setNickname(dto.getNickname());
-//        user.setPassword(dto.getPassword());
-        user.setHeadImg(dto.getImgUrl());
-        user.setSex(dto.getSex());
-        user.setCity(dto.getCity());
+    public boolean update(User user) {
+        user.setNickname(user.getNickname());
+        user.setPassword(null);
+        user.setHeadimg(user.getHeadimg());
+        user.setSex(user.getSex());
+        user.setCity(user.getCity());
         user.setUpdateTime(new Date());
-        logger.debug("update one user...");
-        return userMapper.updateByPrimaryKeySelective(user);
-    }
-
-    @Transactional
-    @Override
-    public int delete(Integer id) {
-        User user = getById(id);
-        if (user == null){
-            return 0;
-        }
-        logger.debug("delete one user...");
-        return userMapper.deleteByPrimaryKey(id);
+        log.debug("update one user...");
+        return updateById(user);
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        UserExample example = new UserExample();
-        UserExample.Criteria cri = example.createCriteria();
-        cri.andNicknameEqualTo(username);
-        List<User> users = userMapper.selectByExample(example);
-        if (users.isEmpty()) {
-            return null;
-        }
-        return users.get(0);
-    }
-
-    @Override
-    public int changePwd(User user) {
+    public boolean changePwd(User user) {
         User update = new User();
         update.setId(user.getId());
         update.setPassword(user.getPassword());
-        logger.debug("change password by user:{} .",user.getNickname());
-        return userMapper.updateByPrimaryKeySelective(update);
+        log.debug("change password by user:{} .", user.getNickname());
+        return updateById(update);
+    }
+
+    @Override
+    public User getByUsername(String userName) {
+        List<User> list = list(Wrappers.<User>lambdaQuery().eq(User::getNickname, userName));
+        if (list != null && list.size() > 1) {
+            throw new RuntimeException("查询用户大于一个");
+        }
+        return list.get(0);
     }
 }

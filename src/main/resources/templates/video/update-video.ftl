@@ -2,7 +2,7 @@
 <#assign ctx="${springMacroRequestContext.contextPath}">
 <div class="panel panel-default">
     <ol class="breadcrumb">
-        <li><a id="back" href="${ctx}/video/list.do?pageNum=1"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
+        <li><a id="back" href="${ctx}/video/list?current=1"><span class="glyphicon glyphicon-arrow-left"></span>返回</a></li>
         <li class="active">添加视频</li>
     </ol>
     <div class="panel-body">
@@ -61,7 +61,7 @@
         var ctx = '${springMacroRequestContext.contextPath}';
         // 获取分类json
         $.ajax({
-            url: ctx + '/category/list-json.do',
+            url: ctx + '/category/list-json',
             success: function (result) {
                 if (result.result === 1) {
                     var data = result.data;
@@ -86,7 +86,7 @@
         }
 
         var options = {
-            url: ctx + '/video/update.do',
+            url: ctx + '/video/update',
             type: 'POST',
             dataType: 'json',
             resetForm: true,

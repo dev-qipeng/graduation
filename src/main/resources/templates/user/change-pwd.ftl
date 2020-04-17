@@ -68,7 +68,7 @@
         };
 
         var options = {
-            url: ctx + '/user/change-pwd.do',
+            url: ctx + '/user/change-pwd',
             type: 'POST',
             dataType: 'json',
             resetForm: false,

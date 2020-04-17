@@ -56,7 +56,7 @@
         var ctx = '${springMacroRequestContext.contextPath}';
         // 获取分类json
         $.ajax({
-            url: ctx + '/category/list-json.do',
+            url: ctx + '/category/list-json',
             success: function (result) {
                 if (result.result === 1) {
                     var data = result.data;
@@ -73,7 +73,7 @@
         }
 
         var options = {
-            url: ctx + '/video/insert.do',
+            url: ctx + '/video/insert',
             type: 'POST',
             dataType: 'json',
             resetForm: true,
