@@ -59,8 +59,10 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nickname` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `headimg` varchar(255) DEFAULT NULL,
-  `sex` int(2) DEFAULT NULL,
+  `open_id` varchar(255) DEFAULT NULL,
+  `head_img` varchar(255) DEFAULT NULL,
+    `token` varchar(255) DEFAULT NULL,
+  `sex` int(2) DEFAULT 1,
   `city` varchar(20) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
@@ -70,8 +72,8 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '123', null, null, null, null, null);
-INSERT INTO `user` VALUES ('2', 'admin', 'admin', null, null, null, null, null);
+INSERT INTO `user` VALUES ('1', '123', '123', null, null, null, null,null, null, null);
+INSERT INTO `user` VALUES ('2', 'admin', 'admin', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for video
@@ -82,7 +84,7 @@ CREATE TABLE `video` (
   `name` varchar(20) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `description` varchar(1024) DEFAULT NULL,
-  `img` varchar(255) DEFAULT NULL,
+  `poster` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `score` double(10,0) DEFAULT NULL,
   `like_num` int(11) DEFAULT NULL,
