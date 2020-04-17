@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.qipeng.dao.CategoryMapper;
-import site.qipeng.util.StringUtils;
+import site.qipeng.util.StringUtil;
 import site.qipeng.entity.Category;
 import site.qipeng.entity.CategoryExample;
 import site.qipeng.service.CategoryService;
@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryById(Integer id) {
-        if(!StringUtils.isEmpty(id.toString())){
+        if(!StringUtil.isEmpty(id.toString())){
             return categoryMapper.selectByPrimaryKey(id);
         }
         return null;
@@ -63,7 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public int deleteCategory(Integer id) {
-        if(!StringUtils.isEmpty(id.toString())){
+        if(!StringUtil.isEmpty(id.toString())){
             logger.debug("delete one category...");
             // TODO 删除分类后，视频怎么办
             return categoryMapper.deleteByPrimaryKey(id);

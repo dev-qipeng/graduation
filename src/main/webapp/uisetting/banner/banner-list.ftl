@@ -30,7 +30,7 @@
         <tbody>
         <#list pageInfo.list as banner>
             <tr>
-                <td width="10%">${banner.id}</td>
+                <td width="10%">${banner_index+1}</td>
                 <td width="20%">
                     <a href="${banner.imgUrl!}" target="_blank"><img src="${banner.imgUrl!}" alt="banner预览" width="200px" height="100px"></a>
                 </td>

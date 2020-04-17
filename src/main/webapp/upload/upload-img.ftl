@@ -2,15 +2,38 @@
 
 
 <p class="font-weight-bold">您所选择的文件列表：</p>
-<div id="imglist">你的浏览器不支持flash,Silverlight或者HTML5！</div>
 
 <br/>
 
 <div id="container">
-	<a id="selectimg" href="javascript:void(0);" class='btn btn-primary'>选择文件</a>
-	<a id="uploadimg" href="javascript:void(0);" class='btn btn-danger'>开始上传</a>
+    <input id="input-1a" type="file" class="file" data-show-preview="false">
 </div>
 
 <span id="console"></span>
 
+<script>
+    projectfileoptions : {
+        showUpload : false,
+		showRemove : false,
+		language : 'zh',
+		allowedPreviewTypes : [ 'image' ],
+		allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+		maxFileSize : 2000,
+    },
+    // 文件上传框
+    $('input[class=file]').each(function() {
+        var imageurl = $(this).attr("value");
 
+        if (imageurl) {
+            var op = $.extend({
+                initialPreview : [ // 预览图片的设置
+                    "<img src='" + imageurl + "' class='file-preview-image'>", ]
+            }, projectfileoptions);
+
+            $(this).fileinput(op);
+        } else {
+            $(this).fileinput(projectfileoptions);
+        }
+    });
+
+</script>

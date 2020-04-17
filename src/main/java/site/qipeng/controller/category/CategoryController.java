@@ -9,7 +9,7 @@ import site.qipeng.entity.Category;
 import site.qipeng.service.CategoryService;
 import site.qipeng.util.JsonResult;
 import site.qipeng.util.JsonResultUtil;
-import site.qipeng.util.StringUtils;
+import site.qipeng.util.StringUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +59,7 @@ public class CategoryController {
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public JsonResult insert(@RequestParam(value = "name", required = true) String name){
         try{
-            if(StringUtils.isEmpty(name)){
+            if(StringUtil.isEmpty(name)){
                 JsonResultUtil.getErrorJson("参数错误");
             }
             int i = categoryService.insertCategory(name);
@@ -85,7 +85,7 @@ public class CategoryController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public JsonResult update(@RequestParam(value = "id", required = true) Integer id, @RequestParam(value = "name", required = true) String name){
         try{
-            if(StringUtils.isEmpty(name) || StringUtils.isEmpty(id.toString())){
+            if(StringUtil.isEmpty(name) || StringUtil.isEmpty(id.toString())){
                 JsonResultUtil.getErrorJson("参数错误");
             }
             int i = categoryService.updateCategory(id, name);

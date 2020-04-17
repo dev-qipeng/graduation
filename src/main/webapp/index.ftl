@@ -10,11 +10,13 @@
     <title>小程序管理后台</title>
     <link rel="stylesheet" type="text/css" href="${ctx}/statics/css/common.css" />
     <link rel="stylesheet" type="text/css" href="${ctx}/statics/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="${ctx}/upload/upload.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/statics/css/fileinput.css" media="all" />
     <script src="${ctx}/statics/js/jquery-3.3.1.min.js"></script>
     <script src="${ctx}/statics/js/bootstrap.min.js"></script>
     <script src="${ctx}/statics/js/jquery.form.min.js"></script>
     <script src="${ctx}/statics/js/bootbox.min.js"></script>
+    <script src="${ctx}/statics/js/fileinput.js"></script>
+    <script src="${ctx}/statics/js/locales/zh.js"></script>
 
     <script>
         // 生命全局项目路径

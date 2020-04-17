@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.qipeng.util.StringUtils;
+import site.qipeng.util.StringUtil;
 import site.qipeng.dao.VideoMapper;
 import site.qipeng.entity.Video;
 import site.qipeng.entity.VideoDTO;
@@ -68,7 +68,7 @@ public class VideoServiceImpl extends Video implements VideoService {
 
     @Transactional
     public int deleteVideo(Integer id) {
-        if (!StringUtils.isEmpty(id.toString())){
+        if (!StringUtil.isEmpty(id.toString())){
             logger.info("delete one video...");
             return videoMapper.deleteByPrimaryKey(id);
         }

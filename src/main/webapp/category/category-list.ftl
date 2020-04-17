@@ -30,7 +30,7 @@
         <tbody>
         <#list pageInfo.list as category>
             <tr>
-                <td width="10%">${category.id}</td>
+                <td width="10%">${category_index+1}</td>
                 <td width="20%">${category.name !''}</td>
                 <td width="20%">${(category.createTime?string("yyyy-MM-dd"))!} </td>
                 <td width="10%">

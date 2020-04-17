@@ -38,6 +38,10 @@
         </property>
     </bean>
 
+    <!--静态资源-->
+    <mvc:default-servlet-handler/>
+    <mvc:resources location="file:/upload/" mapping="/upload/**" />
+    <mvc:resources location="/statics/" mapping="/statics/**" />
 
     <!-- FreeMarker视图解析  -->
     <bean id="viewResolver"

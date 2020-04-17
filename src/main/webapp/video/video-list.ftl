@@ -44,7 +44,7 @@
         <tbody>
         <#list pageInfo.list as video>
             <tr>
-                <td width="10%">${video.id}</td>
+                <td width="10%">${video_index+1}</td>
                 <td width="15%" style="word-break:break-all; word-wrap:break-word; white-space:inherit">${video.name !''}</td>
                 <#list categoryList as category>
                     <#if (category.id == video.categoryId)>

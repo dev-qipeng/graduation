@@ -29,13 +29,13 @@
         <tbody>
         <#list pageInfo.list as user>
             <tr>
-                <td width="10%">${user.id}</td>
+                <td width="10%">${user_index+1}</td>
                 <td width="15%">${user.nickname !''}</td>
                 <td width="10%">${user.password !}</td>
                 <td width="10%">
                     <a href="${user.headImg !'#'}" target="_blank"><img src="${user.headImg !'#'}" alt="头像" width="60px" height="60px"></a>
                 </td>
-                <td width="10%"><#if user.sex==1 >男<#else>女</#if></td>
+                <td width="10%"><#if user.sex !1==1 >男<#else>女</#if></td>
                 <td width="10%">${user.city !''}</td>
                 <td width="10%">${(user.createTime?string("yyyy-MM-dd"))!} </td>
                 <td width="10%">
