@@ -48,7 +48,7 @@ public class VideoServiceImpl extends Video implements VideoService {
         record.setPlayNum(0);
         record.setScore(9.0);
         record.setCreateTime(new Date());
-        record.setDescription(video.getDescription());
+        record.setDescription(StringUtil.isEmpty(video.getDescription()) ? "无" : video.getDescription());
         logger.info("insert one video...");
         return videoMapper.insert(record);
     }
