@@ -18,7 +18,7 @@
         <fileupload.version>1.3.1</fileupload.version>
         <log4j.version>1.2.17</log4j.version>
         <json-lib.version>2.4</json-lib.version>
-        <mysql-connector.version>5.1.34</mysql-connector.version>
+        <mysql-connector.version>8.0.16</mysql-connector.version>
         <druid.version>1.0.29</druid.version>
         <hibernate.version>5.0.2.Final</hibernate.version>
         <jackson.version>2.9.1</jackson.version>
