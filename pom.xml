@@ -21,7 +21,7 @@
         <mysql-connector.version>5.1.34</mysql-connector.version>
         <druid.version>1.0.29</druid.version>
         <hibernate.version>5.0.2.Final</hibernate.version>
-        <jackson.version>2.9.1</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
         <aliyun-sdk-oss.version>2.8.2</aliyun-sdk-oss.version>
         <pagehelper.version>5.0.0</pagehelper.version>
     </properties>
